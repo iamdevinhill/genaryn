@@ -66,16 +66,21 @@ body {
 /* Dynamic Gradient Background */
 body {
     background: 
-        radial-gradient(circle at 20% 80%, rgba(30, 60, 114, 0.8) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(42, 82, 152, 0.6) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(45, 90, 95, 0.7) 0%, transparent 50%),
+        /* Futuristic radial orbs */
+        radial-gradient(circle at 15% 85%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 15%, rgba(138, 43, 226, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(0, 191, 255, 0.08) 0%, transparent 60%),
+        /* Tech grid overlay */
+        linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.03) 50%, transparent 100%),
+        linear-gradient(0deg, transparent 0%, rgba(138, 43, 226, 0.03) 50%, transparent 100%),
+        /* Base gradient */
         var(--background-gradient);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
 }
 
-/* Animated background elements */
+/* Additional futuristic background elements */
 body::before {
     content: '';
     position: fixed;
@@ -84,25 +89,42 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
+        /* Futuristic hexagonal grid */
         repeating-linear-gradient(
-            45deg,
+            60deg,
             transparent,
-            transparent 2px,
-            rgba(42, 82, 152, 0.08) 2px,
-            rgba(42, 82, 152, 0.08) 4px
+            transparent 30px,
+            rgba(0, 255, 255, 0.05) 30px,
+            rgba(0, 255, 255, 0.05) 31px
         ),
         repeating-linear-gradient(
-            -45deg,
+            -60deg,
             transparent,
-            transparent 2px,
-            rgba(30, 60, 114, 0.06) 2px,
-            rgba(30, 60, 114, 0.06) 4px
+            transparent 30px,
+            rgba(138, 43, 226, 0.04) 30px,
+            rgba(138, 43, 226, 0.04) 31px
+        ),
+        /* Tech circuit lines */
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 50px,
+            rgba(0, 191, 255, 0.03) 50px,
+            rgba(0, 191, 255, 0.03) 51px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 50px,
+            rgba(138, 43, 226, 0.03) 50px,
+            rgba(138, 43, 226, 0.03) 51px
         );
     pointer-events: none;
     z-index: -1;
-    animation: backgroundShift 20s ease-in-out infinite;
+    animation: backgroundShift 25s ease-in-out infinite;
 }
 
+/* Futuristic corner accents */
 body::after {
     content: '';
     position: fixed;
@@ -111,36 +133,102 @@ body::after {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(ellipse at 50% 50%, rgba(42, 82, 152, 0.1) 0%, transparent 70%);
+        /* Futuristic energy field */
+        radial-gradient(ellipse at 30% 70%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 30%, rgba(138, 43, 226, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(0, 191, 255, 0.04) 0%, transparent 60%);
     pointer-events: none;
     z-index: -1;
-    animation: pulseGlow 8s ease-in-out infinite;
+    animation: pulseGlow 12s ease-in-out infinite;
 }
 
-/* Background animations */
-@keyframes backgroundShift {
-    0%, 100% {
-        transform: translateX(0) translateY(0) rotate(0deg);
-    }
-    25% {
-        transform: translateX(-10px) translateY(-5px) rotate(0.5deg);
-    }
-    50% {
-        transform: translateX(5px) translateY(-10px) rotate(-0.5deg);
-    }
-    75% {
-        transform: translateX(-5px) translateY(5px) rotate(0.3deg);
-    }
+/* Corner tech accents */
+.corner-accent {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    pointer-events: none;
+    z-index: -1;
 }
 
-@keyframes pulseGlow {
+.corner-accent::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(45deg, transparent 40%, rgba(0, 255, 255, 0.1) 50%, transparent 60%),
+        linear-gradient(-45deg, transparent 40%, rgba(138, 43, 226, 0.08) 50%, transparent 60%);
+    animation: cornerPulse 4s ease-in-out infinite;
+}
+
+.corner-accent.top-left {
+    top: 0;
+    left: 0;
+    transform: rotate(0deg);
+}
+
+.corner-accent.top-right {
+    top: 0;
+    right: 0;
+    transform: rotate(90deg);
+}
+
+.corner-accent.bottom-left {
+    bottom: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+.corner-accent.bottom-right {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+@keyframes cornerPulse {
     0%, 100% {
         opacity: 0.3;
         transform: scale(1);
     }
     50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+/* Background animations */
+@keyframes backgroundShift {
+    0%, 100% {
+        transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateX(-15px) translateY(-8px) rotate(0.8deg) scale(1.02);
+    }
+    50% {
+        transform: translateX(8px) translateY(-15px) rotate(-0.8deg) scale(0.98);
+    }
+    75% {
+        transform: translateX(-8px) translateY(8px) rotate(0.5deg) scale(1.01);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        opacity: 0.4;
+        transform: scale(1.1) rotate(1deg);
+    }
+    50% {
         opacity: 0.6;
-        transform: scale(1.05);
+        transform: scale(1.15) rotate(0deg);
+    }
+    75% {
+        opacity: 0.4;
+        transform: scale(1.1) rotate(-1deg);
     }
 }
 
@@ -205,14 +293,32 @@ body::after {
 }
 
 .cta-button {
-    background: var(--primary-gradient);
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(138, 43, 226, 0.3) 50%, rgba(0, 191, 255, 0.2) 100%);
     color: white;
-    border: none;
+    border: 1px solid rgba(0, 255, 255, 0.3);
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--border-radius-xl);
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+    left: 100%;
 }
 
 .cta-button:hover {
@@ -290,9 +396,27 @@ body::after {
 }
 
 .btn-primary {
-    background: var(--primary-gradient);
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(138, 43, 226, 0.3) 50%, rgba(0, 191, 255, 0.2) 100%);
     color: white;
-    border: 2px solid transparent;
+    border: 2px solid rgba(0, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
 }
 
 .btn-primary:hover {
