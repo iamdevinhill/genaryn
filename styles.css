@@ -293,32 +293,14 @@ body::after {
 }
 
 .cta-button {
-    background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(138, 43, 226, 0.3) 50%, rgba(0, 191, 255, 0.2) 100%);
+    background: var(--primary-gradient);
     color: white;
-    border: 1px solid rgba(0, 255, 255, 0.3);
+    border: none;
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--border-radius-xl);
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
-    transition: all var(--transition-fast);
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-}
-
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
-}
-
-.cta-button:hover::before {
-    left: 100%;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .cta-button:hover {
@@ -396,27 +378,9 @@ body::after {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(138, 43, 226, 0.3) 50%, rgba(0, 191, 255, 0.2) 100%);
+    background: var(--primary-gradient);
     color: white;
-    border: 2px solid rgba(0, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
-}
-
-.btn-primary:hover::before {
-    left: 100%;
+    border: 2px solid transparent;
 }
 
 .btn-primary:hover {
