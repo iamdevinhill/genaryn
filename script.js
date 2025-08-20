@@ -232,8 +232,8 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Create floating particles
-function createParticles() {
+// Create enhanced floating particles with better distribution
+function createEnhancedParticles() {
     const particlesContainer = document.createElement('div');
     particlesContainer.className = 'particles-container';
     particlesContainer.style.cssText = `
@@ -248,52 +248,118 @@ function createParticles() {
     `;
     document.body.appendChild(particlesContainer);
 
-    for (let i = 0; i < 15; i++) {
+    // Create more varied particles with different sizes and speeds
+    for (let i = 0; i < 25; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
+        
+        const size = Math.random() * 6 + 2;
+        const duration = Math.random() * 25 + 15;
+        const delay = Math.random() * 10;
+        const startX = Math.random() * 100;
+        const endX = Math.random() * 200 - 100;
+        
         particle.style.cssText = `
             position: absolute;
-            width: ${Math.random() * 4 + 1}px;
-            height: ${Math.random() * 4 + 1}px;
-            background: rgba(45, 165, 168, ${Math.random() * 0.3 + 0.1});
+            width: ${size}px;
+            height: ${size}px;
+            background: radial-gradient(circle, rgba(45, 165, 168, 0.4) 0%, rgba(34, 196, 199, 0.2) 50%, transparent 100%);
             border-radius: 50%;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation: float ${Math.random() * 20 + 10}s linear infinite;
-            animation-delay: ${Math.random() * 5}s;
+            left: ${startX}%;
+            top: 100%;
+            animation: floatParticle ${duration}s linear infinite;
+            animation-delay: ${delay}s;
+            filter: blur(${Math.random() * 0.5}px);
         `;
+        
+        // Alternate particle colors
+        if (i % 3 === 0) {
+            particle.style.background = 'radial-gradient(circle, rgba(34, 196, 199, 0.4) 0%, rgba(45, 165, 168, 0.2) 50%, transparent 100%)';
+        } else if (i % 3 === 1) {
+            particle.style.background = 'radial-gradient(circle, rgba(26, 122, 125, 0.3) 0%, rgba(45, 165, 168, 0.15) 50%, transparent 100%)';
+        }
+        
         particlesContainer.appendChild(particle);
     }
 }
 
-// Add floating animation to CSS
-const particleStyle = document.createElement('style');
-particleStyle.textContent = `
-    @keyframes float {
+// Create enhanced mesh overlay
+function createMeshOverlay() {
+    const meshOverlay = document.createElement('div');
+    meshOverlay.className = 'mesh-overlay';
+    document.body.appendChild(meshOverlay);
+}
+
+// Create enhanced light sweep effects
+function createLightSweeps() {
+    const lightSweep1 = document.createElement('div');
+    lightSweep1.className = 'light-sweep';
+    document.body.appendChild(lightSweep1);
+    
+    const lightSweep2 = document.createElement('div');
+    lightSweep2.className = 'light-sweep';
+    lightSweep2.style.animationDelay = '-7.5s';
+    document.body.appendChild(lightSweep2);
+}
+
+// Create dynamic background elements
+function createDynamicBackground() {
+    // Create mesh overlay
+    createMeshOverlay();
+    
+    // Create light sweeps
+    createLightSweeps();
+    
+    // Create enhanced particles
+    createEnhancedParticles();
+}
+
+// Enhanced floating animation for particles
+const enhancedParticleStyle = document.createElement('style');
+enhancedParticleStyle.textContent = `
+    @keyframes floatParticle {
         0% {
-            transform: translateY(100vh) translateX(0);
+            transform: translateY(100vh) translateX(0) scale(0) rotate(0deg);
             opacity: 0;
         }
         10% {
             opacity: 1;
+            transform: translateY(90vh) translateX(20px) scale(1) rotate(45deg);
+        }
+        50% {
+            opacity: 0.6;
+            transform: translateY(50vh) translateX(${Math.random() * 100 - 50}px) scale(1.2) rotate(180deg);
         }
         90% {
             opacity: 1;
+            transform: translateY(10vh) translateX(-20px) scale(1) rotate(315deg);
         }
         100% {
-            transform: translateY(-100px) translateX(${Math.random() * 200 - 100}px);
+            transform: translateY(-100px) translateX(0) scale(0) rotate(360deg);
             opacity: 0;
         }
     }
+    
+    .particle:nth-child(odd) {
+        animation-direction: reverse;
+    }
+    
+    .particle:nth-child(3n) {
+        animation-duration: 1.5s;
+    }
+    
+    .particle:nth-child(5n) {
+        animation-duration: 2.5s;
+    }
 `;
-document.head.appendChild(particleStyle);
+document.head.appendChild(enhancedParticleStyle);
 
 // Add loading animation to page
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
     
-    // Create floating particles
-    createParticles();
+    // Create dynamic background elements
+    createDynamicBackground();
     
     // Animate hero content
     const heroTitle = document.querySelector('.hero-title');
@@ -379,18 +445,9 @@ function typeWriter(element, text, speed = 100) {
 // Uncomment the line below to enable typing effect
 // setTimeout(() => typeWriter(document.querySelector('.hero-title'), 'GENARYN FINDS IT.'), 1000);
 
-// Add scroll progress indicator
+// Add enhanced scroll progress indicator
 const progressBar = document.createElement('div');
-progressBar.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background: linear-gradient(135deg, #2DA5A8 0%, #1f8a8d 100%);
-    z-index: 10001;
-    transition: width 0.1s ease;
-`;
+progressBar.className = 'scroll-progress';
 document.body.appendChild(progressBar);
 
 window.addEventListener('scroll', () => {
