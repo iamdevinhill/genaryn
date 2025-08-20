@@ -33,7 +33,7 @@ const utils = {
         // Set background color based on type
         const colors = {
             success: '#28a745',
-            error: '#2a5298',
+            error: '#2DA5A8',
             warning: '#ffc107',
             info: '#17a2b8'
         };
@@ -255,7 +255,7 @@ function createParticles() {
             position: absolute;
             width: ${Math.random() * 4 + 1}px;
             height: ${Math.random() * 4 + 1}px;
-            background: rgba(42, 82, 152, ${Math.random() * 0.3 + 0.1});
+            background: rgba(45, 165, 168, ${Math.random() * 0.3 + 0.1});
             border-radius: 50%;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
@@ -387,7 +387,7 @@ progressBar.style.cssText = `
     left: 0;
     width: 0%;
     height: 3px;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, #2DA5A8 0%, #1f8a8d 100%);
     z-index: 10001;
     transition: width 0.1s ease;
 `;
