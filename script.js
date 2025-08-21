@@ -112,15 +112,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar background change on scroll (debounced for performance)
+// Enhanced floating navbar scroll behavior
 const handleNavbarScroll = utils.debounce(() => {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = 'none';
+        navbar.classList.remove('scrolled');
     }
 }, 10);
 
@@ -474,7 +472,95 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
     }
+    
+    // Initialize contact form validation
+    initializeContactForm();
 });
+
+// Contact form validation
+function initializeContactForm() {
+    const contactForm = document.querySelector('.contact-form');
+    if (!contactForm) return;
+    
+    const inputs = contactForm.querySelectorAll('input, textarea');
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    
+    // Remove any existing error states on page load
+    inputs.forEach(input => {
+        input.classList.remove('error', 'success');
+    });
+    
+    // Real-time validation on input
+    inputs.forEach(input => {
+        input.addEventListener('input', function() {
+            validateField(this);
+        });
+        
+        input.addEventListener('blur', function() {
+            validateField(this);
+        });
+    });
+    
+    // Form submission
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let isValid = true;
+        inputs.forEach(input => {
+            if (!validateField(input)) {
+                isValid = false;
+            }
+        });
+        
+        if (isValid) {
+            // Show success message
+            utils.showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+            contactForm.reset();
+            
+            // Remove all validation states
+            inputs.forEach(input => {
+                input.classList.remove('error', 'success');
+            });
+        } else {
+            utils.showNotification('Please fix the errors above and try again.', 'error');
+        }
+    });
+}
+
+function validateField(field) {
+    const value = field.value.trim();
+    const fieldName = field.name;
+    let isValid = true;
+    
+    // Remove existing states
+    field.classList.remove('error', 'success');
+    
+    // Validation rules
+    if (fieldName === 'name') {
+        if (value.length < 2) {
+            field.classList.add('error');
+            isValid = false;
+        } else {
+            field.classList.add('success');
+        }
+    } else if (fieldName === 'email') {
+        if (!utils.isValidEmail(value)) {
+            field.classList.add('error');
+            isValid = false;
+        } else {
+            field.classList.add('success');
+        }
+    } else if (fieldName === 'message') {
+        if (value.length < 10) {
+            field.classList.add('error');
+            isValid = false;
+        } else {
+            field.classList.add('success');
+        }
+    }
+    
+    return isValid;
+}
 
 // Add touch support for mobile
 let touchStartY = 0;

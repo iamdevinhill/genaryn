@@ -1,14 +1,36 @@
 /* Reset and Base Styles */
 :root {
     /* Color Palette */
-    --primary-color: #2DA5A8;
-    --primary-dark: #1a7a7d;
-    --primary-light: #4db8bb;
-    --secondary-color: #0f5a5c;
-    --accent-color: #34c4c7;
-    --dark-color: #0a3d3f;
-    --darker-color: #052a2c;
-    --darkest-color: #031a1c;
+    --primary-color: #1F4B4D;   /* Muted teal-gray (was primary-dark) */
+    --primary-dark: #2DA5A8;    /* Teal (was primary-color) */
+    --primary-light: #A8A8A8;   /* Softer minty highlight */
+
+    --secondary-color: #0D1B1E; /* Deep charcoal */
+    --accent-color: #FF6F61;    /* Salmon-red for contrast */
+
+    --dark-color: #1A1A1A;      /* Dark neutral background */
+    --darker-color: #141414;    /* Darker background layer */
+    --darkest-color: #0B0B0B;   /* Deepest layer / true black */
+
+    --text-color: #D9D9D9;      /* Light gray text */
+    --muted-text: #A8A8A8;      /* Subtle secondary text */
+    
+    /* Text Colors */
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-light: rgba(255, 255, 255, 0.9);
+    --text-muted: rgba(255, 255, 255, 0.6);
+    
+    /* Border Colors */
+    --border-light: #e1e5e9;
+    --border-white: rgba(255, 255, 255, 0.1);
+    --border-primary: rgba(45, 165, 168, 0.1);
+    
+    /* Status Colors */
+    --error-color: #ff4757;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
     
     /* Enhanced Gradients */
     --primary-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
@@ -44,7 +66,9 @@
     
     /* Transitions */
     --transition-fast: 0.3s ease;
+    --transition-medium: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 0.6s ease;
+    --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 * {
@@ -56,7 +80,7 @@
 body {
     font-family: var(--font-family);
     line-height: 1.6;
-    color: #333;
+    color: var(--text-primary);
     overflow-x: hidden;
 }
 
@@ -270,13 +294,13 @@ body::after {
     }
 }
 
-/* Enhanced Navbar with better contrast */
+/* Enhanced Floating Navbar with better contrast */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(25px);
     border-bottom: 1px solid rgba(45, 165, 168, 0.2);
     z-index: 1000;
@@ -286,14 +310,47 @@ body::after {
         0 8px 40px rgba(45, 165, 168, 0.2),
         0 4px 20px rgba(0, 0, 0, 0.1),
         0 0 0 1px rgba(45, 165, 168, 0.1);
+    transform: translateY(0);
 }
 
-.navbar:hover {
-    background: rgba(255, 255, 255, 1);
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
     box-shadow: 
         0 12px 50px rgba(45, 165, 168, 0.25),
         0 6px 25px rgba(0, 0, 0, 0.15),
         0 0 0 1px rgba(45, 165, 168, 0.15);
+    backdrop-filter: blur(30px);
+}
+
+.navbar:hover {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 
+        0 12px 50px rgba(45, 165, 168, 0.25),
+        0 6px 25px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(45, 165, 168, 0.15);
+    backdrop-filter: blur(30px);
+}
+
+/* Ensure proper spacing for fixed header */
+body {
+    padding-top: 0; /* Remove any top padding since header is floating */
+}
+
+/* Add smooth transition for navbar visibility */
+.navbar {
+    will-change: transform, background, box-shadow;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .nav-container {
@@ -372,7 +429,7 @@ body::after {
     border-radius: var(--border-radius-xl);
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-medium), background var(--transition-medium);
     box-shadow: 
         0 6px 20px rgba(45, 165, 168, 0.3),
         0 3px 10px rgba(0, 0, 0, 0.2),
@@ -380,6 +437,8 @@ body::after {
     position: relative;
     overflow: hidden;
     transform: translateY(0);
+    background-size: 200% 200%;
+    background-position: 0% 0%;
 }
 
 .cta-button:hover {
@@ -390,6 +449,7 @@ body::after {
         0 0 30px rgba(45, 165, 168, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
     background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+    background-position: 100% 100%;
 }
 
 .cta-button:active {
@@ -409,14 +469,14 @@ body::after {
 .hamburger span {
     width: 25px;
     height: 3px;
-    background: #333;
+    background: var(--text-primary);
     margin: 3px 0;
-    transition: 0.3s;
+    transition: var(--transition-fast);
 }
 
 /* Hero Section */
 .hero {
-    padding: 120px 0 80px;
+    padding: 140px 0 80px; /* Increased top padding for floating header */
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -469,30 +529,39 @@ body::after {
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-medium);
     border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Enhanced button shadows for better visibility */
 .btn-primary {
     background: var(--primary-gradient);
     color: white;
-    border: 2px solid transparent;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-xl);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--transition-medium), background var(--transition-medium);
     box-shadow: 
-        0 8px 25px rgba(45, 165, 168, 0.3),
-        0 4px 15px rgba(0, 0, 0, 0.2),
+        0 6px 20px rgba(45, 165, 168, 0.3),
+        0 3px 10px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
     transform: translateY(0);
     background-size: 200% 200%;
+    background-position: 0% 0%;
 }
 
 .btn-primary:hover {
     transform: translateY(-4px) scale(1.02);
     box-shadow: 
-        0 18px 40px rgba(45, 165, 168, 0.4),
-        0 10px 25px rgba(0, 0, 0, 0.25),
-        0 0 35px rgba(45, 165, 168, 0.4),
+        0 16px 40px rgba(45, 165, 168, 0.4),
+        0 8px 20px rgba(0, 0, 0, 0.25),
+        0 0 30px rgba(45, 165, 168, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
     background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
     background-position: 100% 100%;
@@ -510,18 +579,21 @@ body::after {
     box-shadow: 
         0 4px 15px rgba(255, 255, 255, 0.2),
         0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-medium), background var(--transition-medium), border-color var(--transition-medium);
     transform: translateY(0);
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-outline:hover {
-    background: white;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
     color: var(--primary-color);
     transform: translateY(-4px) scale(1.02);
     box-shadow: 
         0 12px 30px rgba(255, 255, 255, 0.4),
         0 6px 20px rgba(0, 0, 0, 0.2),
         0 0 25px rgba(255, 255, 255, 0.3);
+    border-color: var(--primary-color);
 }
 
 .btn-outline:active {
@@ -573,7 +645,7 @@ body::after {
     position: absolute;
     width: 12px;
     height: 12px;
-    background: #ff4757;
+    background: var(--error-color);
     border-radius: 50%;
     border: 2px solid white;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
@@ -602,9 +674,9 @@ body::after {
     padding: 2.5rem;
     border-radius: 20px;
     text-align: center;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-medium);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(45, 165, 168, 0.1);
+    border: 1px solid var(--border-primary);
     box-shadow: 
         0 8px 32px rgba(45, 165, 168, 0.15),
         0 4px 16px rgba(0, 0, 0, 0.1),
@@ -644,7 +716,7 @@ body::after {
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-medium);
     transform: scale(1);
 }
 
@@ -671,11 +743,11 @@ body::after {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .feature-card p {
-    color: #666;
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
@@ -737,7 +809,7 @@ body::after {
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-medium);
     transform: scale(1);
 }
 
@@ -772,7 +844,7 @@ body::after {
     padding: 2rem;
     border-radius: 15px;
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(45, 165, 168, 0.1);
+    border: 1px solid var(--border-primary);
     box-shadow: 
         0 8px 32px rgba(45, 165, 168, 0.15),
         0 4px 16px rgba(0, 0, 0, 0.1),
@@ -797,11 +869,11 @@ body::after {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .step-content p {
-    color: #666;
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
@@ -859,7 +931,7 @@ body::after {
     transform: translate(-50%, -50%);
     width: 15px;
     height: 15px;
-    background: #ff4757;
+    background: var(--error-color);
     border-radius: 50%;
     border: 2px solid white;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
@@ -899,7 +971,7 @@ body::after {
 }
 
 .contact-info p {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-light);
     margin-bottom: 2rem;
     line-height: 1.6;
 }
@@ -914,7 +986,7 @@ body::after {
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-light);
 }
 
 .contact-item i {
@@ -928,7 +1000,7 @@ body::after {
     padding: 2rem;
     border-radius: 20px;
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(45, 165, 168, 0.1);
+    border: 1px solid var(--border-primary);
     box-shadow: 
         0 8px 32px rgba(45, 165, 168, 0.15),
         0 4px 16px rgba(0, 0, 0, 0.1),
@@ -956,11 +1028,18 @@ body::after {
 .form-group textarea {
     width: 100%;
     padding: 1rem;
-    border: 2px solid #e1e5e9;
+    border: 2px solid var(--border-light);
     border-radius: 10px;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: all var(--transition-fast);
     background: white;
+    color: var(--text-primary);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #999;
+    opacity: 1;
 }
 
 .form-group input:focus,
@@ -1017,7 +1096,7 @@ body::after {
 .footer-links a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color var(--transition-fast);
 }
 
 .footer-links a:hover {
@@ -1039,7 +1118,7 @@ body::after {
     justify-content: center;
     color: white;
     text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-medium);
     transform: translateY(0) scale(1);
 }
 
@@ -1057,8 +1136,8 @@ body::after {
 .footer-bottom {
     text-align: center;
     padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.6);
+    border-top: 1px solid var(--border-white);
+    color: var(--text-muted);
 }
 
 /* Responsive Design */
@@ -1089,7 +1168,7 @@ body::after {
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
     }
 
     .nav-menu.active {
@@ -1250,28 +1329,50 @@ html {
 }
 
 .error-message {
-    color: var(--secondary-color);
+    color: var(--error-color);
     font-size: 0.875rem;
     margin-top: 0.25rem;
     min-height: 1.25rem;
 }
 
-.form-group input:invalid,
-.form-group textarea:invalid {
-    border-color: var(--secondary-color);
+/* Form validation states - only show errors when explicitly set */
+.form-group input.error,
+.form-group textarea.error {
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 2px rgba(255, 71, 87, 0.1);
+    animation: shake 0.5s ease-in-out;
+}
+
+.form-group input.success,
+.form-group textarea.success {
+    border-color: var(--success-color);
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.1);
+}
+
+/* Shake animation for error fields */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px rgba(45, 165, 168, 0.1);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    outline: 2px solid var(--secondary-color);
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(45, 165, 168, 0.2);
+    transform: translateY(-1px);
 }
 
 /* Enhanced focus states for accessibility */
 button:focus,
-a:focus,
-input:focus,
-textarea:focus {
+a:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 3px;
     box-shadow: 0 0 0 4px rgba(45, 165, 168, 0.2);
@@ -1282,7 +1383,7 @@ textarea:focus {
     position: absolute;
     top: -40px;
     left: 6px;
-    background: var(--primary-blue);
+    background: var(--primary-color);
     color: white;
     padding: 8px;
     text-decoration: none;
@@ -1485,99 +1586,6 @@ textarea:focus {
     box-shadow: 0 0 10px rgba(45, 165, 168, 0.5);
 } 
 
-/* Final positioning adjustments for background effects */
-.mesh-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    background: 
-        /* Advanced hexagonal mesh */
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 80px,
-            rgba(45, 165, 168, 0.008) 80px,
-            rgba(45, 165, 168, 0.008) 81px
-        ),
-        repeating-linear-gradient(
-            60deg,
-            transparent,
-            transparent 80px,
-            rgba(34, 196, 199, 0.006) 80px,
-            rgba(34, 196, 199, 0.006) 81px
-        ),
-        repeating-linear-gradient(
-            -60deg,
-            transparent,
-            transparent 80px,
-            rgba(45, 165, 168, 0.005) 80px,
-            rgba(45, 165, 168, 0.005) 81px
-        ),
-        
-        /* Diagonal energy lines */
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 120px,
-            rgba(45, 165, 168, 0.01) 120px,
-            rgba(45, 165, 168, 0.01) 140px
-        ),
-        repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 140px,
-            rgba(34, 196, 199, 0.008) 140px,
-            rgba(34, 196, 199, 0.008) 160px
-        );
-    will-change: transform, opacity;
-}
-
-.light-sweep {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    background: 
-        linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(45, 165, 168, 0.05) 30%,
-            rgba(34, 196, 199, 0.08) 50%,
-            rgba(45, 165, 168, 0.05) 70%,
-            transparent 100%
-        );
-    will-change: transform, opacity;
-}
-
-/* Enhanced particle positioning and performance */
-.particles-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    overflow: hidden;
-    will-change: transform;
-}
-
-.particle {
-    position: absolute;
-    background: radial-gradient(circle, rgba(45, 165, 168, 0.4) 0%, rgba(34, 196, 199, 0.2) 50%, transparent 100%);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: floatParticle 20s linear infinite;
-    will-change: transform, opacity;
-}
-
 /* Performance optimizations */
 body,
 body::before,
@@ -1590,8 +1598,6 @@ body::after,
 .light-sweep {
     will-change: transform, opacity;
 }
-
-
 
 /* Final touch: subtle glow effect on hover for interactive elements */
 .feature-card:hover .feature-icon,
