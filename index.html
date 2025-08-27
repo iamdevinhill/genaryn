@@ -4,67 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genaryn - Tomorrow's Needs Today</title>
-    
-    <!-- Open Graph metadata for social sharing -->
-    <meta property="og:title" content="Genaryn - Tomorrow's Needs Today">
-    <meta property="og:description" content="Revolutionary global asset & inventory tracking with cutting-edge precision and stealth technology.">
-    <meta property="og:image" content="logo.png">
-    <meta property="og:url" content="https://iamdevinhill.github.io/genaryn/">
-    <meta property="og:type" content="website">
-    
     <link rel="icon" type="image/png" href="fav.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Futuristic corner accents -->
-    <div class="corner-accent top-left"></div>
-    <div class="corner-accent top-right"></div>
-    <div class="corner-accent bottom-left"></div>
-    <div class="corner-accent bottom-right"></div>
-    
-    <!-- Header/Navbar -->
-    <header class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <img src="logo.png" alt="Genaryn Logo" class="logo-image">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.png" alt="Genaryn Logo">
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link">Home</a></li>
+                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="btn btn-primary preorder-btn">Preorder</button>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <nav class="nav-menu">
-                <ul class="nav-list">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-                <button class="cta-button">Preorder Genaryn</button>
-            </nav>
-            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <main id="main-content">
     <section id="home" class="hero">
-        <div class="hero-container">
+        <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Genaryn – Tomorrow's Needs Today.</h1>
-                <p class="hero-subtitle">Revolutionary global asset & inventory tracking with cutting-edge precision and stealth technology.</p>
-                <div class="hero-buttons">
-                    <button class="btn btn-outline">Find Out How</button>
+                <div class="hero-text">
+                    <h1 class="hero-title">Genaryn – Tomorrow's Needs Today</h1>
+                    <p class="hero-subtitle">Revolutionary asset tracking technology that works seamlessly in the background, providing real-time insights and comprehensive monitoring for your most valuable resources.</p>
+                    <button class="btn btn-secondary hero-btn">Find Out How</button>
                 </div>
-            </div>
-            <div class="hero-image">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="map-container">
-                            <div class="map-pin pin-1"></div>
-                            <div class="map-pin pin-2"></div>
-                            <div class="map-pin pin-3"></div>
-                            <div class="map-grid"></div>
+                <div class="hero-visual">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="map-container">
+                                <div class="map-pin pin-1"></div>
+                                <div class="map-pin pin-2"></div>
+                                <div class="map-pin pin-3"></div>
+                                <div class="map-grid"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -73,78 +61,73 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section id="about" class="features">
         <div class="container">
+            <h2 class="section-title">Why Choose Genaryn</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-eye"></i>
-                    </div>
+                    <div class="feature-icon">STEALTH</div>
                     <h3>Works Stealthily</h3>
-                    <p>State-of-the-art tracking technology that operates invisibly and undetectably in any environment.</p>
+                    <p>Advanced stealth technology ensures your tracking operations remain undetected while maintaining full functionality.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
+                    <div class="feature-icon">TARGET</div>
                     <h3>Tracks Accurately</h3>
-                    <p>Ultra-precise location tracking with millisecond updates and zero latency across global networks.</p>
+                    <p>Precision tracking with sub-meter accuracy, providing real-time location data you can trust.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
+                    <div class="feature-icon">SENSOR</div>
                     <h3>Senses Expansively</h3>
-                    <p>Comprehensive multi-dimensional data collection and AI-powered analysis for complete asset intelligence.</p>
+                    <p>Multi-spectrum sensors detect and monitor assets across various environments and conditions.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- How It Works Section -->
-    <section id="about" class="how-it-works">
+    <section class="how-it-works">
         <div class="container">
-            <h2 class="section-title">HOW DOES IT WORK?</h2>
-            <div class="steps-container">
-                <div class="step step-left">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Attach Genaryn trackers</h3>
-                        <p>Securely attach our revolutionary quantum tracking devices to your valuable assets worldwide.</p>
+            <h2 class="section-title">How It Works</h2>
+            <div class="process-container">
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Deploy</h3>
+                            <p>Strategically place Genaryn tracking units in your target locations</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Activate</h3>
+                            <p>Initialize the system through our secure mobile application</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Monitor</h3>
+                            <p>Track assets in real-time with comprehensive analytics dashboard</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Analyze</h3>
+                            <p>Gain insights through advanced reporting and predictive analytics</p>
+                        </div>
                     </div>
                 </div>
-                <div class="step step-right">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Buy info tokens on app</h3>
-                        <p>Purchase advanced information tokens through our cutting-edge mobile application platform.</p>
-                    </div>
-                </div>
-                <div class="step step-left">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Use tokens for data</h3>
-                        <p>Exchange tokens to access real-time quantum tracking data and advanced analytics.</p>
-                    </div>
-                </div>
-                <div class="step step-right">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Enjoy yelling "Genaryn Found It!"</h3>
-                        <p>Celebrate successful recoveries with our legendary signature catchphrase.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="center-image">
                 <div class="tablet-mockup">
                     <div class="tablet-screen">
-                        <div class="app-interface">
-                            <div class="app-header">
-                                <div class="app-title">Genaryn</div>
-                            </div>
-                            <div class="app-map">
-                                <div class="app-pin"></div>
-                                <div class="app-grid"></div>
+                        <div class="dashboard-preview">
+                            <div class="dashboard-header"></div>
+                            <div class="dashboard-chart"></div>
+                            <div class="dashboard-stats">
+                                <div class="stat-item"></div>
+                                <div class="stat-item"></div>
+                                <div class="stat-item"></div>
                             </div>
                         </div>
                     </div>
@@ -158,72 +141,82 @@
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
                 <div class="contact-info">
-                    <h3>Ready to revolutionize your asset tracking?</h3>
-                    <p>Contact us to learn more about how Genaryn can help protect your valuable assets with quantum technology.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>hello@genaryn.com</span>
+                    <div class="contact-item">
+                        <div class="contact-icon">LOCATION</div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>456 Quantum Blvd<br>Innovation District, ID 54321</p>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+1 (555) 987-6543</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">EMAIL</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@genaryn.com</p>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>456 Quantum Blvd, Innovation District, ID 54321</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">PHONE</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) GEN-ARYN</p>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" novalidate>
-                    <div class="form-group">
-                        <label for="name" class="sr-only">Your Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your Name" required aria-describedby="name-error">
-                        <div id="name-error" class="error-message" role="alert"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="sr-only">Your Email</label>
-                        <input type="email" id="email" name="email" placeholder="Your Email" required aria-describedby="email-error">
-                        <div id="email-error" class="error-message" role="alert"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="sr-only">Your Message</label>
-                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required aria-describedby="message-error"></textarea>
-                        <div id="message-error" class="error-message" role="alert"></div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
             </div>
         </div>
     </section>
-    </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="Genaryn Logo" class="logo-image">
+                    <img src="logo.png" alt="Genaryn Logo">
+                    <p>Tomorrow's Needs Today</p>
                 </div>
                 <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="footer-social">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Twitter">TWITTER</a>
+                        <a href="#" aria-label="LinkedIn">LINKEDIN</a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> Genaryn. All rights reserved.</p>
+                <p>&copy; <span id="currentYear"></span> Genaryn. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
