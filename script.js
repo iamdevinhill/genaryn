@@ -43,40 +43,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close mobile menu when clicking on a link
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            nav.classList.remove('active');
-            
-            // Reset hamburger animation
-            const spans = mobileMenuToggle.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-            
-            // Hide menu after animation
-            setTimeout(() => {
-                if (!nav.classList.contains('active')) {
-                    nav.style.display = 'none';
-                }
-            }, 100);
+            // Only apply mobile menu behavior on mobile devices
+            if (window.innerWidth <= 768) {
+                nav.classList.remove('active');
+                
+                // Reset hamburger animation
+                const spans = mobileMenuToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                
+                // Hide menu after animation
+                setTimeout(() => {
+                    if (!nav.classList.contains('active')) {
+                        nav.style.display = 'none';
+                    }
+                }, 100);
+            }
         });
     });
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(event) {
         if (!nav.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
-            nav.classList.remove('active');
-            
-            // Reset hamburger animation
-            const spans = mobileMenuToggle.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-            
-            // Hide menu after animation
-            setTimeout(() => {
-                if (!nav.classList.contains('active')) {
-                    nav.style.display = 'none';
-                }
-            }, 100);
+            // Only apply mobile menu behavior on mobile devices
+            if (window.innerWidth <= 768) {
+                nav.classList.remove('active');
+                
+                // Reset hamburger animation
+                const spans = mobileMenuToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                
+                // Hide menu after animation
+                setTimeout(() => {
+                    if (!nav.classList.contains('active')) {
+                        nav.style.display = 'none';
+                    }
+                }, 100);
+            }
         }
     });
 

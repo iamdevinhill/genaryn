@@ -127,6 +127,10 @@ p {
     width: auto;
 }
 
+.nav {
+    display: block;
+}
+
 .nav-list {
     display: flex;
     list-style: none;
@@ -575,18 +579,6 @@ p {
         display: none;
     }
     
-    .nav.active {
-        display: block;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--white);
-        box-shadow: var(--shadow);
-        padding: 1rem;
-        animation: slideDown 0.2s ease-out;
-    }
-    
     .nav {
         display: none;
         position: absolute;
@@ -602,8 +594,10 @@ p {
     }
     
     .nav.active {
+        display: block;
         transform: translateY(0);
         opacity: 1;
+        animation: slideDown 0.2s ease-out;
     }
     
     .nav.active .nav-list {
