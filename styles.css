@@ -423,16 +423,20 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+    align-items: start;
 }
 
 .contact-form {
-    background: var(--gray-100);
-    padding: 2rem;
+    background: var(--white);
+    padding: 2.5rem;
     border-radius: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-200);
+    height: fit-content;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .form-group label {
@@ -445,12 +449,13 @@ p {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 12px;
+    padding: 16px;
     border: 2px solid var(--gray-200);
     border-radius: 8px;
     font-family: inherit;
     font-size: 1rem;
     transition: var(--transition);
+    background: var(--white);
 }
 
 .form-group input:focus,
@@ -464,12 +469,19 @@ p {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    padding: 2.5rem;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-200);
+    height: fit-content;
 }
 
 .contact-item {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 1.5rem;
+    padding: 1rem 0;
 }
 
 .contact-icon {
@@ -544,16 +556,17 @@ p {
 }
 
 .social-icons a {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--primary-light);
     text-decoration: none;
-    padding: 8px 12px;
+    padding: 12px;
     border: 1px solid var(--primary-light);
-    border-radius: 6px;
+    border-radius: 8px;
     transition: var(--transition);
+    width: 44px;
+    height: 44px;
 }
 
 .social-icons a:hover {
@@ -623,6 +636,27 @@ p {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+        align-items: stretch;
+    }
+    
+    .contact-form,
+    .contact-info {
+        padding: 2rem;
+        margin: 0 0.5rem;
+    }
+    
+    .contact-item {
+        padding: 0.8rem 0;
+        gap: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 14px;
     }
     
     .footer-content {
@@ -637,8 +671,14 @@ p {
     }
     
     .social-icons a {
-        min-width: 100px;
-        text-align: center;
+        width: 50px;
+        height: 50px;
+        padding: 14px;
+    }
+    
+    .social-icons a svg {
+        width: 22px;
+        height: 22px;
     }
     
     .phone-mockup {

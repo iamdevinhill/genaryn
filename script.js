@@ -131,9 +131,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Get form data
             const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
+            const name = formData.get('name').trim();
+            const email = formData.get('email').trim();
+            const message = formData.get('message').trim();
             
             // Basic validation
             if (!name || !email || !message) {
@@ -146,13 +146,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Simulate form submission
-            showNotification('Sending message...', 'info');
+            // Create mailto link
+            const subject = 'Contact from Genaryn Website';
+            const body = `${message}\n\n---\nBest regards,\n${name}`;
             
+            // Encode the email components
+            const encodedSubject = encodeURIComponent(subject);
+            const encodedBody = encodeURIComponent(body);
+            
+            // Create mailto URL
+            const mailtoUrl = `mailto:contact@genaryn.com?subject=${encodedSubject}&body=${encodedBody}`;
+            
+            // Show success notification
+            showNotification('Opening email client...', 'success');
+            
+            // Open email client
+            window.location.href = mailtoUrl;
+            
+            // Reset form after a short delay
             setTimeout(() => {
-                showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
                 contactForm.reset();
-            }, 2000);
+            }, 1000);
         });
     }
 
