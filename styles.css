@@ -1,8 +1,8 @@
 /* CSS Variables */
 :root {
-    --primary-color: #1F4B4D;
-    --primary-dark: #2DA5A8;
-    --primary-light: #A8A8A8;
+    --primary-color: #6B7C32;
+    --primary-dark: #4A5A1F;
+    --primary-light: #8B9A5A;
     --white: #ffffff;
     --gray-100: #f8f9fa;
     --gray-200: #e9ecef;
@@ -149,7 +149,7 @@ p {
 }
 
 .btn-secondary:hover {
-    background-color: #2DA5A8;
+    background-color: var(--primary-dark);
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
@@ -166,7 +166,7 @@ p {
     z-index: 1000;
     padding: 1rem 0;
     box-shadow: var(--shadow);
-    border-bottom: 3px solid #2DA5A8;
+    border-bottom: 3px solid var(--primary-dark);
 }
 
 .header-content {
@@ -534,7 +534,7 @@ p {
 
 .feature-card:hover {
     transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(31, 75, 77, 0.15);
+    box-shadow: 0 20px 40px rgba(107, 124, 50, 0.15);
     border-color: var(--primary-dark);
 }
 
@@ -881,7 +881,7 @@ p {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-dark);
-    box-shadow: 0 0 0 3px rgba(45, 165, 168, 0.1);
+    box-shadow: 0 0 0 3px rgba(107, 124, 50, 0.1);
 }
 
 .contact-info {
@@ -924,7 +924,7 @@ p {
 
 /* Footer */
 .footer {
-    background-color: var(--primary-color);
+    background-color: var(--gray-900);
     color: var(--white);
     padding: 60px 0 20px;
 }
@@ -1326,7 +1326,7 @@ p {
     
     .feature-card:hover {
         transform: translateY(-8px) scale(1.01);
-        box-shadow: 0 15px 30px rgba(31, 75, 77, 0.12);
+        box-shadow: 0 15px 30px rgba(107, 124, 50, 0.12);
     }
     
     .feature-card:hover .feature-icon {
