@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.feature-card, .step, .contact-form, .contact-info');
+    const animateElements = document.querySelectorAll('.feature-card, .leader-card, .contact-form, .contact-info');
     animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
